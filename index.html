@@ -1,0 +1,60 @@
+<meta name="viewport" content="user-scalable=no, width=device-width, minimum-scale=1, maximum-scale=1" />
+<iframe id="ifr" style="display:none;"></iframe>
+<script type="text/javascript" src="taobao.js"></script>
+<script type="text/javascript" src="tmall.js"></script>
+<script type="text/javascript">
+
+    function anchor (a) {
+        var b = document.createElement("a");
+        b.setAttribute("href", a);
+        b.style.display = "none";
+        document.body.appendChild(b);
+        var c = document.createEvent("HTMLEvents");
+        c.initEvent("click", !1, !1);
+        b.dispatchEvent(c);
+    }
+
+    function locationHref (url) {
+        location.href = url;
+    }
+
+    function openWindow (url) {
+        window.open(url);
+    }
+
+    function iframe(url) {
+        var iframe = document.getElementById('ifr');
+        iframe.setAttribute('src', url || 'tmall://page.tm/webview?url=http%3A%2F%2Fbaron.laiwang.com%2Fs%2FRxDsx%3Ftm…fined&_ns=1&ut_sk=1.VgO5KQ0cuAQDABItejWYZKPW_12615387_1446967816.17.detail');   
+    }
+
+    var INTENT = {
+        taobao: 'intent://h5.m.taobao.com/awp/core/detail.htm?ut_sk=1.VKpU9eBa60gDAOtHSGJUPYuz_21380790_1446967928.Copy.1&sourceType=item&id=523341308474&price=75&un=82fa2381d248f5ec46e6040d6f65052e&share_crt_v=1&cpp=1&short_name=h.X8uc1&sm=97c276&app=chrome&point=%7B%22from%22%3A%22h5%22%2C%22url%22%3A%22http%3A%2F%2Fh5.m.taobao.com%2Fawp%2Fcore%2Fdetail.htm%22%2C%22h5_uid%22%3A%227evFDtoXCU0CAXPsNTLqzEP8%22%2C%22uaPoint%22%3A%22Mozilla%2F5.0%2520(Linux%3B%2520Android%25204.4.2%3B%2520CHM-TL00H%2520Build%2FHonorCHM-TL00H)%2520AppleWebKit%2F537.36%2520(KHTML%2C%2520like%2520Gecko)%2520Chrome%2F46.0.2490.76%2520Mobile%2520Safari%2F537.36%22%7D#Intent;scheme=taobao;package=com.taobao.taobao;end',
+        tmall: 'intent://page.tm/webview?url=http%3A%2F%2Fbaron.laiwang.com%2Fs%2FRxDsx%3Ftm%3D1bd6d9%26_reqfrom%3Dotherundefined&_ns=1&ut_sk=1.VgO5KQ0cuAQDABItejWYZKPW_12615387_1446967816.17.detail#Intent;scheme=tmall;package=com.tmall.wireless;end'
+    };
+
+    var SCHEME = {
+        taobao: 'taobao://h5.m.taobao.com/awp/core/detail.htm?ut_sk=1.VKpU9eBa60gDAOtHSGJUPYuz_21380790_1446967928.Copy.1&sourceType=item&id=523341308474&price=75&un=82fa2381d248f5ec46e6040d6f65052e&share_crt_v=1&cpp=1&short_name=h.X8uc1&sm=97c276&app=chrome&point=%7B%22from%22%3A%22h5%22%2C%22url%22%3A%22http%3A%2F%2Fh5.m.taobao.com%2Fawp%2Fcore%2Fdetail.htm%22%2C%22h5_uid%22%3A%227evFDtoXCU0CAXPsNTLqzEP8%22%2C%22uaPoint%22%3A%22Mozilla%2F5.0%2520(Linux%3B%2520Android%25204.4.2%3B%2520CHM-TL00H%2520Build%2FHonorCHM-TL00H)%2520AppleWebKit%2F537.36%2520(KHTML%2C%2520like%2520Gecko)%2520Chrome%2F46.0.2490.76%2520Mobile%2520Safari%2F537.36%22%7D',
+        tmall: 'tmall://page.tm/webview?url=http%3A%2F%2Fbaron.laiwang.com%2Fs%2FRxDsx%3Ftm…fined&_ns=1&ut_sk=1.VgO5KQ0cuAQDABItejWYZKPW_12615387_1446967816.17.detail'
+    };
+
+    var fnMap = {
+        1: 'anchor',
+        2: 'locationHref',
+        3: 'openWindow',
+        4: 'iframe'
+    };
+
+    var link = SCHEME['tmall'];
+
+    var match = location.search.match(/auto=(\d)/);
+    if (match && match.length > 1) {
+        var fn = fnMap[+match[1]];
+        window[fn](link);
+        console.log(fn);
+    }
+
+</script>
+<a href="javascript:;" onclick="anchor(link)">anchor</a>
+<a href="javascript:;" onclick="locationHref(link)">location</a>
+<a href="javascript:;" onclick="openWindow(link)">openWindow</a>
+<a href="javascript:;" onclick="iframe(link)">iframe</a>
